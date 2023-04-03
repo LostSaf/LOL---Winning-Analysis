@@ -11,4 +11,4 @@ Determine if numeric gold values can be used to determine which team won.
 - Logistic regression for binary classification
 - Confusion matrices and their corresponding receiver operator charecteristic (ROC) curves
 - k-means clustering for binary classification
-- k-nearest neighboards clustering
+- k-nearest neighbors clustering
