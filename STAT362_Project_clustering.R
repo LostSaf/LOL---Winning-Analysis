@@ -4,6 +4,8 @@
 library(tidyverse)
 library(factoextra)
 library(class)
+library(ggplot2)
+library(cluster)
 
 # Load data
 league <- read.csv("C:/Users/harry/OneDrive/Desktop/Classes/2nd Year/STAT 362/STAT 362 Project/high_diamond_ranked_10min.csv")
@@ -15,7 +17,10 @@ df <- select(league, blueWins, blueTotalGold, redTotalGold,
 
 # Create training data sets
 set.seed(1)
-random_index <- sample(nrow(df), 9000) 
+
+# For selecting 
+p <- 0.90
+random_index <- sample(nrow(df), nrow(df) * p) 
 
 # our "x"
 df_train <- df[random_index, -(2:3)]
@@ -45,13 +50,20 @@ knn_predicted <- knn(train = df_train_n, test = df_test_n,
 # 100% accuracy with k-nn (wow!!!)
 table(df_test_labels, knn_predicted)
 
+
 #
 # k-means clustering
 #
-df_kmeans <- kmeans(x = scale(df[, 2:3]), centers = 2, nstart = 25)
+df_kmeans <- kmeans(x = scale(df[, 2:3]), centers = 2, nstart = 500)
 
 # View clusters
 df_kmeans$cluster
 
 # Plot clusters
-fviz_cluster(df_kmeans,  data = df[, 2:3], geom = "point", ggtheme = theme_classic())
+fviz_cluster(df_kmeans,  data = df[, 2:3], geom = "point",
+             ggtheme = theme_classic(), 
+             xlab = "Total Blue Gold",
+             ylab = "Total Red Gold",
+             main = "k-Means Clustering: Total Gold",
+             ellipse.alpha = 0.2, ellipse = FALSE)
+
