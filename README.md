@@ -8,7 +8,7 @@ Determine if numeric gold values can be used to determine which team won.
 
 
 ### Methods Performed
-- Logistic Regression for binary classification
-- Confusion matrices and their corresponding Receiver Operator Charecteristic (ROC) curves
-- k-means Clustering for binary classification
-- Linear Discriminant Analysis (LDA) for binary classification with labels
+- Logistic regression for binary classification
+- Confusion matrices and their corresponding receiver operator charecteristic (ROC) curves
+- k-means clustering for binary classification
+- k-nearest neighboards clustering
