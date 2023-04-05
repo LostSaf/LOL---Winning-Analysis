@@ -1,0 +1,51 @@
+
+library(tidyverse)
+library(ggpubr)
+league <- high_diamond_ranked_10min
+
+total_gold
+
+kills <- league %>%
+  ggplot(aes(x= redKills, y = redTotalGold, color = blueWins)) + geom_point() +
+  stat_smooth(method = lm)
+
+first_blood <- league %>%
+  ggplot(aes(x= redFirstBlood, y = redTotalGold, color = blueWins)) + 
+  geom_point() +
+  stat_smooth(method = lm)
+
+wards_destroyed <- league %>%
+  ggplot(aes(x= redWardsDestroyed, y = redTotalGold, color = blueWins)) + 
+  geom_point() +
+  stat_smooth(method = lm)
+
+elite_monsters <- league %>%
+  ggplot(aes(x= redEliteMonsters, y = redTotalGold, color = blueWins)) + 
+  geom_point() +
+  stat_smooth(method = lm)
+
+dragons <- league %>%
+  ggplot(aes(x= redDragons, y = redTotalGold, color = blueWins)) + 
+  geom_point() +
+  stat_smooth(method = lm)
+ 
+heralds <- league %>%
+  ggplot(aes(x= redHeralds, y = redTotalGold, color = blueWins)) + 
+  geom_point() +
+  stat_smooth(method = lm)
+
+towers_destroyed <- league %>%
+  ggplot(aes(x= redTowersDestroyed, y = redTotalGold, color = blueWins)) + 
+  geom_point() +
+  stat_smooth(method = lm)
+
+ggarrange(total_gold,kills,first_blood,wards_destroyed,elite_monsters,dragons,
+          heralds,towers_destroyed)
+
+summary(lm(redTotalGold ~ redKills, data = high_diamond_ranked_10min))
+summary(lm(redTotalGold ~ redFirstBlood, data = high_diamond_ranked_10min))
+summary(lm(redTotalGold ~ redWardsDestroyed, data = high_diamond_ranked_10min))
+summary(lm(redTotalGold ~ redEliteMonsters, data = high_diamond_ranked_10min))
+summary(lm(redTotalGold ~ redDragons, data = high_diamond_ranked_10min))
+summary(lm(redTotalGold ~ redHeralds, data = high_diamond_ranked_10min))
+summary(lm(redTotalGold ~ redTowersDestroyed, data = high_diamond_ranked_10min))
