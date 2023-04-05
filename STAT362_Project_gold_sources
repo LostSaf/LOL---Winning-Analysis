@@ -41,11 +41,28 @@ towers_destroyed <- league %>%
 
 ggarrange(total_gold,kills,first_blood,wards_destroyed,elite_monsters,dragons,
           heralds,towers_destroyed)
+          
+k <- lm(redTotalGold ~ redKills, data = high_diamond_ranked_10min)
+f_b <- lm(redTotalGold ~ redFirstBlood, data = high_diamond_ranked_10min)
+w <- lm(redTotalGold ~ redWardsDestroyed, data = high_diamond_ranked_10min)
+e_m <- lm(redTotalGold ~ redEliteMonsters, data = high_diamond_ranked_10min)
+d <- lm(redTotalGold ~ redDragons, data = high_diamond_ranked_10min)
+h <- lm(redTotalGold ~ redHeralds, data = high_diamond_ranked_10min)
+t_d <- lm(redTotalGold ~ redTowersDestroyed, data = high_diamond_ranked_10min)
 
-summary(lm(redTotalGold ~ redKills, data = high_diamond_ranked_10min))
-summary(lm(redTotalGold ~ redFirstBlood, data = high_diamond_ranked_10min))
-summary(lm(redTotalGold ~ redWardsDestroyed, data = high_diamond_ranked_10min))
-summary(lm(redTotalGold ~ redEliteMonsters, data = high_diamond_ranked_10min))
-summary(lm(redTotalGold ~ redDragons, data = high_diamond_ranked_10min))
-summary(lm(redTotalGold ~ redHeralds, data = high_diamond_ranked_10min))
-summary(lm(redTotalGold ~ redTowersDestroyed, data = high_diamond_ranked_10min))
+
+summary(k)
+summary(f_b)
+summary(w_d)
+summary(e_m)
+summary(d)
+summary(h)
+summary(t_d)
+
+equatiomatic::extract_eq(k, use_coefs = TRUE)
+equatiomatic::extract_eq(f_b, use_coefs = TRUE)
+equatiomatic::extract_eq(w, use_coefs = TRUE)
+equatiomatic::extract_eq(e_m, use_coefs = TRUE)
+equatiomatic::extract_eq(d, use_coefs = TRUE)
+equatiomatic::extract_eq(h, use_coefs = TRUE)
+equatiomatic::extract_eq(t_d)
