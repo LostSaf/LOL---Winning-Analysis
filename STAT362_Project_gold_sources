@@ -94,3 +94,32 @@ equatiomatic::extract_eq(e_m, use_coefs = TRUE)
 equatiomatic::extract_eq(d, use_coefs = TRUE)
 equatiomatic::extract_eq(h, use_coefs = TRUE)
 equatiomatic::extract_eq(t_d, use_coefs = TRUE)
+
+
+#averages
+avg_kills <- mean(league$redKills)
+avg_wards <- mean(league$redWardsDestroyed)
+avg_td <- mean(league$redTowersDestroyed)
+avg_em <- mean(league$redEliteMonsters)
+avg_drag <- mean(league$redDragons)
+avg_herald <- mean(league$redHeralds)
+
+
+avg_kills
+avg_wards
+avg_td
+avg_em
+avg_drag
+avg_herald
+avg_total_gold <- c(0,0,0,0,0,0)
+
+avg_total_gold[1] <- 13726.5 + 450.1 * avg_kills
+avg_total_gold[2] <- 16354.65 + 49.35 * avg_wards
+avg_total_gold[3] <- 16176.9 + 544.6 * avg_em
+avg_total_gold[4] <- 16266.2 + 539.4 * avg_drag
+avg_total_gold[5] <- 16390.3 + 617.1 * avg_herald
+avg_total_gold[6] <- 16392 + 2251 * avg_td
+
+avg_total_gold
+
+#kills, herald, wards
