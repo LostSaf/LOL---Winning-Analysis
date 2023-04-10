@@ -78,10 +78,8 @@ d <- lm(redTotalGold ~ redDragons, data = high_diamond_ranked_10min)
 h <- lm(redTotalGold ~ redHeralds, data = high_diamond_ranked_10min)
 t_d <- lm(redTotalGold ~ redTowersDestroyed, data = high_diamond_ranked_10min)
 
-
-model <- lm(redTotalGold ~ redKills + redFirstBlood + redWardsDestroyed + redEliteMonsters + redDragons + redHeralds + redTowersDestroyed + redCSPerMin + redTotalJungleMinionsKilled, data = high_diamond_ranked_10min)
+model <- lm(redTotalGold ~ redKills + redFirstBlood + redWardsDestroyed + redTowersDestroyed + redCSPerMin + redTotalJungleMinionsKilled, data = high_diamond_ranked_10min)
 summary(model)
-
 
 summary(k)
 summary(f_b)
@@ -98,6 +96,3 @@ equatiomatic::extract_eq(e_m, use_coefs = TRUE)
 equatiomatic::extract_eq(d, use_coefs = TRUE)
 equatiomatic::extract_eq(h, use_coefs = TRUE)
 equatiomatic::extract_eq(t_d, use_coefs = TRUE)
-
-
-
