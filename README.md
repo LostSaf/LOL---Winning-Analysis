@@ -13,3 +13,4 @@ Determine if numeric gold values can be used to determine which team won.
 - k-means clustering for binary classification
 - k-nearest neighbors clustering
 - Linear regression for gold source analysis
+- Regression Trees for classification
