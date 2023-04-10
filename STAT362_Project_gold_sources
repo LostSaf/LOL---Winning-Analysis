@@ -78,7 +78,7 @@ d <- lm(redTotalGold ~ redDragons, data = high_diamond_ranked_10min)
 h <- lm(redTotalGold ~ redHeralds, data = high_diamond_ranked_10min)
 t_d <- lm(redTotalGold ~ redTowersDestroyed, data = high_diamond_ranked_10min)
 
-model <- lm(redTotalGold ~ redKills + redFirstBlood + redWardsDestroyed + redTowersDestroyed + redCSPerMin + redTotalJungleMinionsKilled, data = high_diamond_ranked_10min)
+model <- lm(redTotalGold ~ redKills + redFirstBlood + redWardsDestroyed + redEliteMonsters + redDragons + + redTowersDestroyed + redCSPerMin + redTotalJungleMinionsKilled, data = high_diamond_ranked_10min)
 summary(model)
 
 summary(k)
