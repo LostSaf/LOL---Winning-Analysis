@@ -15,4 +15,4 @@ For STAT 362: R for Data Science (Winter 2023), at Queen's University
 - k-means clustering for binary classification
 - k-nearest neighbors clustering
 - Linear regression for gold source analysis
-- Regression Trees for classification
+- Regression Trees for classification (not used in presentation, maybe report?)
