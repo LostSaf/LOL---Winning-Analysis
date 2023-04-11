@@ -1,4 +1,3 @@
-
 library(ggplot2)
 library(ggpubr)
 library(tidyverse)
@@ -67,8 +66,24 @@ labs(x = "Red team towers destroyed", y = "Red team total gold", color = "Blue t
   scale_colour_manual(values = my_palette, labels = c("Red Team", "Blue Team")) +
   ggtitle("Towers Destroyed vs. Total Gold") + theme_classic2()
 
+CS_per_min <- ggplot(league, aes(x = redCSPerMin, y = redTotalGold)) +
+  geom_point(size = 2, aes(colour = factor(blueWins))) +
+  stat_smooth(method = lm, se = FALSE) +
+  labs(x = "Red team CS", y = "Red team total gold", color = "Blue team wins") + 
+  scale_x_continuous(breaks = round(seq(min(league$redTowersDestroyed), max(league$redTowersDestroyed), by = 1),1)) +
+  scale_colour_manual(values = my_palette, labels = c("Red Team", "Blue Team")) +
+  ggtitle("CS per min vs. Total Gold") + theme_classic2()
+
+jungle_minions <- ggplot(league, aes(x = redTotalJungleMinionsKilled, y = redTotalGold)) +
+  geom_point(size = 2, aes(colour = factor(blueWins))) +
+  stat_smooth(method = lm, se = FALSE) +
+  labs(x = "Red team jungle minions killed", y = "Red team total gold", color = "Blue team wins") + 
+  scale_x_continuous(breaks = round(seq(min(league$redTowersDestroyed), max(league$redTowersDestroyed), by = 1),1)) +
+  scale_colour_manual(values = my_palette, labels = c("Red Team", "Blue Team")) +
+  ggtitle("Minions Killed vs. Total Gold") + theme_classic2()
+
 ggarrange(kills,first_blood,wards_destroyed,elite_monsters,dragons,
-          heralds,towers_destroyed, common.legend= TRUE)
+          heralds,towers_destroyed, CS_per_min, jungle_minions, common.legend= TRUE)
           
 k <- lm(redTotalGold ~ redKills, data = high_diamond_ranked_10min)
 f_b <- lm(redTotalGold ~ redFirstBlood, data = high_diamond_ranked_10min)
