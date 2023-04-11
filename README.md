@@ -1,7 +1,7 @@
 # League of Learning: Using Machine Learning to Predict Victory
 
 ### Goal
-Determine if numeric gold values can be used to determine which team won.
+Determine if numeric gold values can be used to determine which team won each match of *League of Legends*.
 
 ### Dataset
 [LOL Diamond Ranked Games](https://www.kaggle.com/datasets/bobbyscience/league-of-legends-diamond-ranked-games-10-min)
