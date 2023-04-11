@@ -1,4 +1,4 @@
-# League of Legends Winning Prediction and Classification
+# League of Learning: Using Machine Learning to Predict Victory
 
 ### Goal
 Determine if numeric gold values can be used to determine which team won.
