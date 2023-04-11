@@ -31,13 +31,17 @@ df_train_labels <- df[random_index, ]$blueWins
 df_test_labels <- df[-random_index, ]$blueWins
 
 # Fit tree, display tree
-fitr <- tree(df_train_labels ~ redTotalGold + blueTotalGold, data = df_train)
-fitc <- tree(as.factor(df_train_labels) ~ redTotalGold + blueTotalGold, data = df_train)
+fitc <- tree(as.factor(df_test_labels) ~ redTotalGold + blueTotalGold, data = df_test)
 summary(fitc)
 plot(fitc)
 text(fitc)
 
-ggplot(df_train, aes(x = redTotalGold, y = blueTotalGold, color = factor(df_train_labels))) +
+# Compute accuracy
+pred <- predict(fitc, newdata = df_test, type = "class")
+mean(pred == df_test_labels)
+
+# Visualze results
+ggplot(df_test, aes(x = redTotalGold, y = blueTotalGold, color = factor(df_test_labels))) +
   geom_point() +
   scale_color_manual(values = c("red", "blue")) +
   labs(title = "Classification Tree: Red and Blue Total Gold",
