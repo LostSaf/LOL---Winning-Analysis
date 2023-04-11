@@ -6,6 +6,8 @@ Determine if numeric gold values can be used to determine which team won.
 ### Dataset
 [LOL Diamond Ranked Games](https://www.kaggle.com/datasets/bobbyscience/league-of-legends-diamond-ranked-games-10-min)
 
+### Other Info
+For STAT 362: R for Data Science (Winter 2023), at Queen's University
 
 ### Methods Performed
 - Logistic regression for binary classification
