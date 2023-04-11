@@ -16,7 +16,7 @@ df <- select(league, blueWins, blueTotalGold, redTotalGold,
 set.seed(1)
 
 # For selecting 
-p <- 0.90
+p <- 0.70
 random_index <- sample(nrow(df), nrow(df) * p) 
 
 # Training/testing
@@ -31,7 +31,16 @@ df_train_labels <- df[random_index, ]$blueWins
 df_test_labels <- df[-random_index, ]$blueWins
 
 # Fit tree, display tree
-fit <- tree(df_train_labels ~ redTotalGold + blueTotalGold, data = df_train)
-summary(fit)
-plot(fit)
-text(fit)
+fitr <- tree(df_train_labels ~ redTotalGold + blueTotalGold, data = df_train)
+fitc <- tree(as.factor(df_train_labels) ~ redTotalGold + blueTotalGold, data = df_train)
+summary(fitc)
+plot(fitc)
+text(fitc)
+
+ggplot(df_train, aes(x = redTotalGold, y = blueTotalGold, color = factor(df_train_labels))) +
+  geom_point() +
+  scale_color_manual(values = c("red", "blue")) +
+  labs(title = "Classification Tree: Red and Blue Total Gold",
+       x = "Red Total Gold", y = "Blue Total Gold",
+       color = "Blue Wins") +
+  theme(legend.position = "bottom")
