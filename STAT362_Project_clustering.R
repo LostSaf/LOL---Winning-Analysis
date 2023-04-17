@@ -16,7 +16,7 @@ df <- select(league, blueWins, blueTotalGold, redTotalGold,
 set.seed(1)
 
 # For selecting 
-p <- 0.90
+p <- 0.70
 random_index <- sample(nrow(df), nrow(df) * p) 
 
 # our "x"
@@ -43,10 +43,10 @@ for (i in 1:ncol(df_train)) {
 ##################################
 # k-Nearest Neighbors Clustering #
 ##################################
-knn_predicted <- knn(train = df_train_n, test = df_test_n, 
-                     cl = df_train_labels, k = 10)
+knn_predicted <- knn(train = df_train, test = df_test, 
+                     cl = df_train_labels, k = 94)
 
-# 100% accuracy with k-nn (wow!!!)
+# 71% accuracy
 knn_table <- table(df_test_labels, knn_predicted)
 knn_table
 sum(diag(knn_table) / sum(knn_table))
@@ -59,6 +59,8 @@ df_kmeans <- kmeans(x = df_train_n[, 2:3], centers = 2, nstart = 500)
 
 # View clusters
 # df_kmeans$cluster
+
+# Have to re run this for clustering
 kmeans_table <- table(df_train_labels, df_kmeans$cluster)
 kmeans_table
 
@@ -68,6 +70,7 @@ sum(diag(kmeans_table) / sum(kmeans_table))
 # Plot clusters
 fviz_cluster(df_kmeans,  data = df_train_n[, 2:3], geom = "point", stand = FALSE,
              ggtheme = theme_classic(), 
-             xlab = "Total Blue Gold",             ylab = "Total Red Gold",
+             xlab = "Total Blue Gold",
+             ylab = "Total Red Gold",
              main = "k-Means Clustering: Total Gold with Predicted Labels",
              ellipse.alpha = 0.2, ellipse = FALSE)
