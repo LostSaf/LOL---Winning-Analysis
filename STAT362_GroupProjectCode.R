@@ -18,6 +18,10 @@ library(cluster)
 library(tree)
 library(pROC)
 library(caret)
+library(ggplot2)
+library(ggpubr)
+library(equatiomatic)
+
 
 # Load data, calculate needed values
 league <- read.csv("C:/Users/harry/OneDrive/Desktop/Classes/2nd Year/STAT 362/STAT 362 Project/high_diamond_ranked_10min.csv")
@@ -138,11 +142,6 @@ text(prediction_tree)
 # Linear Regression #
 #####################
 
-library(ggplot2)
-library(ggpubr)
-library(tidyverse)
-library(ggpubr)
-library(equatiomatic)
 
 # Colour
 my_palette <- c("firebrick1", "#0072B2")
