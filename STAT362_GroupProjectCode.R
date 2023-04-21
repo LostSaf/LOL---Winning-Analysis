@@ -9,6 +9,7 @@
   # k-means clustering
   # logistic regression
   # classification trees
+  # linear regression
 
 library(tidyverse)
 library(factoextra)
