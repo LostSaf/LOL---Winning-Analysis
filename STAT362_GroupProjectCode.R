@@ -102,28 +102,6 @@ confmat_knn
 acc_knn <- sum(diag(confmat_knn) / sum(confmat_knn))
 acc_knn
 
-######################
-# k-Means Clustering #
-######################
-kmeans_predicted <- kmeans(x = df_train_n_cl[, 2:3], centers = 2, nstart = 500)
-
-# Adjust clusters to 0, and 1 so that we can compute the accuracy correctly
-kmeans_predicted$cluster - 1
-
-# Confusion matrix
-confmat_kmeans <- table(df_train_labels_cl, kmeans_predicted$cluster)
-confmat_kmeans
-
-# Clustering accuracy
-acc_kmeans <- sum(diag(confmat_kmeans) / sum(confmat_kmeans))
-acc_kmeans
-
-# Visualize clusters
-fviz_cluster(kmeans_predicted,  data = df_train_n_cl[, 2:3], geom = "point", 
-             stand = FALSE, ggtheme = theme_classic(), xlab = "Total Blue Gold",
-             ylab = "Total Red Gold", ellipse.alpha = 0.2, ellipse = FALSE,
-             main = "k-Means Clustering: Total Gold with Predicted Labels")
-
 
 ###################
 # Regression Tree #
@@ -154,7 +132,3 @@ acc_tree
 # Display tree
 plot(prediction_tree)
 text(prediction_tree)
-
-             
-
-
