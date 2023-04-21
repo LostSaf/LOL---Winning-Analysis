@@ -132,3 +132,115 @@ acc_tree
 # Display tree
 plot(prediction_tree)
 text(prediction_tree)
+
+
+#####################
+# Linear Regression #
+#####################
+
+library(ggplot2)
+library(ggpubr)
+library(tidyverse)
+library(ggpubr)
+library(equatiomatic)
+
+# Colour
+my_palette <- c("firebrick1", "#0072B2")
+
+# Simple Linear Regression Plots
+kills <- ggplot(league, aes(x = redKills, y = redTotalGold)) +
+  geom_point(size = 2, aes(colour = factor(blueWins))) +
+  stat_smooth(method = lm, se = FALSE) +
+  labs(x = "Red Team kills", y = "Red Team total gold", color = "Wins") + 
+  scale_colour_manual(values = my_palette, labels = c("Red Team", "Blue Team")) +
+  ggtitle("Kills vs. Total Gold") + theme_classic2()
+
+
+first_blood <- ggplot(league, aes(x = redFirstBlood, y = redTotalGold)) +
+  geom_point(size = 2, aes(colour = factor(blueWins))) +
+  stat_smooth(method = lm, se = FALSE) +
+  scale_x_continuous(breaks = round(seq(min(league$redFirstBlood), max(league$redFirstBlood), by = 1),1)) +
+  labs(x = "Red team first bloods", y = "Red team total gold", color = "Blue team wins") +
+  scale_colour_manual(values = my_palette, labels = c("Red Team", "Blue Team")) +
+  ggtitle("First Blood vs. Total Gold") + theme_classic2()
+
+wards_destroyed <- ggplot(league, aes(x = redWardsDestroyed, y = redTotalGold)) +
+  geom_point(size = 2, aes(colour = factor(blueWins))) +
+  stat_smooth(method = lm, se = FALSE) +
+  scale_x_continuous(breaks = round(seq(min(league$redWardsDestroyed), max(league$redWardsDestroyed), by = 1),1)) +
+  labs(x = "Red team wards destroyed", y = "Red team total gold", color = "Blue team wins") +
+  scale_colour_manual(values = my_palette, labels = c("Red Team", "Blue Team")) +
+  ggtitle("Wards Destroyed vs. Total Gold") + theme_classic2()
+
+elite_monsters <- ggplot(league, aes(x = redEliteMonsters, y = redTotalGold)) +
+  geom_point(size = 2, aes(colour = factor(blueWins))) +
+  stat_smooth(method = lm, se = FALSE) +
+  labs(x = "Red team elite monsters", y = "Red team total gold", color = "Blue team wins") +
+  scale_x_continuous(breaks = round(seq(min(league$redEliteMonsters), max(league$redEliteMonsters), by = 1),1)) +
+    scale_colour_manual(values = my_palette, labels = c("Red Team", "Blue Team")) +
+    ggtitle("Elite Monsters vs. Total Gold") + theme_classic2()
+
+dragons <- ggplot(league, aes(x = redDragons, y = redTotalGold)) +
+  geom_point(size = 2, aes(colour = factor(blueWins))) +
+  stat_smooth(method = lm, se = FALSE) +
+  labs(x = "Red team dragons", y = "Red team total gold", color = "Blue team wins") +
+  scale_x_continuous(breaks = round(seq(min(league$redDragons), max(league$redDragons), by = 1),1)) +
+  scale_colour_manual(values = my_palette, labels = c("Red Team", "Blue Team")) +
+  ggtitle("Dragons vs. Total Gold") + theme_classic2()
+
+heralds <- ggplot(league, aes(x = redHeralds, y = redTotalGold)) +
+  geom_point(size = 2, aes(colour = factor(blueWins))) +
+  stat_smooth(method = lm, se = FALSE) +
+  labs(x = "Red team heralds", y = "Red team total gold", color = "Blue team wins") +
+  scale_x_continuous(breaks = round(seq(min(league$redHeralds), max(league$redHeralds), by = 1),1)) +
+  scale_colour_manual(values = my_palette, labels = c("Red Team", "Blue Team")) +
+  ggtitle("Heralds vs. Total Gold") + theme_classic2()
+
+towers_destroyed <- ggplot(league, aes(x = redTowersDestroyed, y = redTotalGold)) +
+geom_point(size = 2, aes(colour = factor(blueWins))) +
+stat_smooth(method = lm, se = FALSE) +
+labs(x = "Red team towers destroyed", y = "Red team total gold", color = "Blue team wins") + 
+  scale_x_continuous(breaks = round(seq(min(league$redTowersDestroyed), max(league$redTowersDestroyed), by = 1),1)) +
+  scale_colour_manual(values = my_palette, labels = c("Red Team", "Blue Team")) +
+  ggtitle("Towers Destroyed vs. Total Gold") + theme_classic2()
+
+CS_per_min <- ggplot(league, aes(x = redCSPerMin, y = redTotalGold)) +
+  geom_point(size = 2, aes(colour = factor(blueWins))) +
+  stat_smooth(method = lm, se = FALSE) +
+  labs(x = "Red team CS", y = "Red team total gold", color = "Blue team wins") + 
+  scale_x_continuous(breaks = round(seq(min(league$redTowersDestroyed), max(league$redTowersDestroyed), by = 1),1)) +
+  scale_colour_manual(values = my_palette, labels = c("Red Team", "Blue Team")) +
+  ggtitle("CS per min vs. Total Gold") + theme_classic2()
+
+jungle_minions <- ggplot(league, aes(x = redTotalJungleMinionsKilled, y = redTotalGold)) +
+  geom_point(size = 2, aes(colour = factor(blueWins))) +
+  stat_smooth(method = lm, se = FALSE) +
+  labs(x = "Red team jungle minions killed", y = "Red team total gold", color = "Blue team wins") + 
+  scale_x_continuous(breaks = round(seq(min(league$redTowersDestroyed), max(league$redTowersDestroyed), by = 1),1)) +
+  scale_colour_manual(values = my_palette, labels = c("Red Team", "Blue Team")) +
+  ggtitle("Minions Killed vs. Total Gold") + theme_classic2()
+
+ggarrange(kills,first_blood,wards_destroyed,elite_monsters,dragons,
+          heralds,towers_destroyed, CS_per_min, jungle_minions, common.legend= TRUE)
+          
+#Simple Linear Regression
+k <- lm(redTotalGold ~ redKills, data = high_diamond_ranked_10min)
+f_b <- lm(redTotalGold ~ redFirstBlood, data = high_diamond_ranked_10min)
+w <- lm(redTotalGold ~ redWardsDestroyed, data = high_diamond_ranked_10min)
+e_m <- lm(redTotalGold ~ redEliteMonsters, data = high_diamond_ranked_10min)
+d <- lm(redTotalGold ~ redDragons, data = high_diamond_ranked_10min)
+h <- lm(redTotalGold ~ redHeralds, data = high_diamond_ranked_10min)
+t_d <- lm(redTotalGold ~ redTowersDestroyed, data = high_diamond_ranked_10min)
+
+summary(k)
+summary(f_b)
+summary(w)
+summary(e_m)
+summary(d)
+summary(h)
+summary(t_d)
+
+#Multivariate Regression
+model <- lm(redTotalGold ~ redKills + redFirstBlood + redWardsDestroyed + redEliteMonsters + redDragons + + redTowersDestroyed + redCSPerMin + redTotalJungleMinionsKilled, data = high_diamond_ranked_10min)
+summary(model)
+
